@@ -57,7 +57,7 @@ public class StudentDaoTest {
 	
 	@Test
 	public void deleteStudentByNo() {
-		int res = studentService.deleteStudentByNo(1);
+		int res = studentService.deleteStudentByNo(6);
 		Assert.assertEquals(1, res);
 	}
 
