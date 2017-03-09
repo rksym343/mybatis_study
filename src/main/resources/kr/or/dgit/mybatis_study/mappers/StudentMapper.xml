@@ -18,4 +18,9 @@
 		UPDATE student SET name=#{name}, email=#{email}, dob=#{dob} WHERE stud_id = #{studId};	
 	</update>
 	
+	<delete id="deleteStudentByNo" parameterType="int">
+		DELETE FROM student WHERE stud_id = #{studId};
+		
+	</delete>
+	
 </mapper>

@@ -54,5 +54,11 @@ public class StudentDaoTest {
 		int res = studentService.updateStudent(std);
 		Assert.assertEquals(1, res);
 	}
+	
+	@Test
+	public void deleteStudentByNo() {
+		int res = studentService.deleteStudentByNo(1);
+		Assert.assertEquals(1, res);
+	}
 
 }
