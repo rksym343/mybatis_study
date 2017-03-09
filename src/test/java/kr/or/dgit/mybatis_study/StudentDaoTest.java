@@ -47,5 +47,12 @@ public class StudentDaoTest {
 		Student student = studentService.selectStudentByNo(5);
 		Assert.assertNotNull(student);
 	}
+	
+	@Test
+	public void updateStudent() {
+		Student std = new Student(3, "수정수정", "jsw@test.co.kr", new Date());
+		int res = studentService.updateStudent(std);
+		Assert.assertEquals(1, res);
+	}
 
 }

@@ -38,4 +38,14 @@ public class StudentService {
 		return studentDao.selectStudentByNo(studNo);
 	}
 	
+	public int updateStudent(Student student){
+		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
+		StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+		int res = studentDao.updateStudent(student);
+		sqlSession.commit(); // commit이 빠지면 테스트는 되더라도 실제 insert가 되지 않음..
+		return res;
+	}
+	
+	
+	
 }
