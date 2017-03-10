@@ -15,43 +15,56 @@ public class StudentService {
 		return instance;
 	}
 
-	private StudentService() {}
-	
-	public List<Student> selectStudentByAll(){
+	private StudentService() {
+	}
+
+	public List<Student> selectStudentByAll() {
 		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
 		StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
-		//sqlSession.close();
+		// sqlSession.close();
 		return studentDao.selectStudentByAll();
 	}
-	
-	public int insertStudent(Student student){
+
+	public int insertStudent(Student student) {
 		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
 		StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
 		int res = studentDao.insertStudent(student);
 		sqlSession.commit(); // commit이 빠지면 테스트는 되더라도 실제 insert가 되지 않음..
 		return res;
 	}
-	
-	public Student selectStudentByNo(int studNo){
+
+	public int insertStudentWithPhone(Student student) {
+		int res = -1;
+		try (SqlSession sqlSession = MybatisSqlSessionFactory.openSession();) {
+			StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
+			res = studentDao.insertStudentWithPhone(student);
+			sqlSession.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
+
+	public Student selectStudentByNo(int studNo) {
 		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
 		StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
 		return studentDao.selectStudentByNo(studNo);
 	}
-	
-	public int updateStudent(Student student){
+
+	public int updateStudent(Student student) {
 		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
 		StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
 		int res = studentDao.updateStudent(student);
 		sqlSession.commit(); // commit이 빠지면 테스트는 되더라도 실제 insert가 되지 않음..
 		return res;
 	}
-	
-	public int deleteStudentByNo(int StudNo){
+
+	public int deleteStudentByNo(int StudNo) {
 		SqlSession sqlSession = MybatisSqlSessionFactory.openSession();
 		StudentDao studentDao = sqlSession.getMapper(StudentDao.class);
 		int res = studentDao.deleteStudentByNo(StudNo);
 		sqlSession.commit(); // commit이 빠지면 테스트는 되더라도 실제 insert가 되지 않음..
 		return res;
 	}
-	
+
 }
